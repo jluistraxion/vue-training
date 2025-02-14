@@ -4,7 +4,7 @@
   >
     <div class="text-lg">Vue Training</div>
     <RouterLink
-      to="/about"
+      to="/challenge"
       class="hover:text-blue-500 text-sm"
     >
       Planet Media Challenge
