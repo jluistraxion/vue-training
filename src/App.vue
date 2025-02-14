@@ -1,7 +1,9 @@
 <template>
-  <div class="flex items-center justify-center h-screen text-slate-500">
-    Vue Training
-  </div>
+  <RouterView :key="route.path" />
 </template>
 
-<script setup></script>
+<script setup lang="ts">
+import { useRoute } from 'vue-router'
+
+const route = useRoute()
+</script>
