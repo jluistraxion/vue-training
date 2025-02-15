@@ -20,7 +20,10 @@
         </li>
       </ul>
     </div>
-    <div ref="targetRefs">
+    <div
+      ref="targetRefs"
+      class="py-4"
+    >
       <component
         :is="activeTabComponent"
         v-if="activeTabComponent"
@@ -29,14 +32,10 @@
   </div>
 </template>
 
-<script setup lang="ts">
+<script setup>
 import { ref, computed, defineProps, watch } from 'vue'
 
-interface Props {
-  tabs: { name: string; label: string; component: any }[]
-}
-
-const props = defineProps<Props>()
+const props = defineProps({ tabs: Array })
 
 const tabsWrapper = ref(null)
 const tabRefs = ref([])

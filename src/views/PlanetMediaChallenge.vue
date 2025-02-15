@@ -5,8 +5,7 @@
   </div>
 </template>
 
-<script setup lang="ts">
-// @ts-nocheck
+<script setup>
 import { computed } from 'vue'
 import Title from '@/components/content/Title.vue'
 import Tabs from '@/components/tabs/Tabs.vue'

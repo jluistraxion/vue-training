@@ -1,3 +1,20 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.easy-table{
+  --easy-table-border: none;
+  --easy-table-body-item-padding: 10px;
+  --easy-table-header-background-color: #F3F4F6;
+  --easy-table-header-font-weight: normal;
+  --easy-table-body-row-font-size: 14px;
+}
+
+.vue3-easy-data-table__header .header-text {
+  font-weight: normal;
+  color: #6B7080;
+}
+
+.vue3-easy-data-table__body tr {
+  cursor: pointer;
+}
