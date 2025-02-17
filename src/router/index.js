@@ -7,9 +7,9 @@ const routes = [
     component: () => import('@/views/HomeView.vue')
   },
   { 
-    name: 'challenge',
-    path: '/challenge', 
-    component: () => import('@/views/PlanetMediaChallenge.vue')
+    name: 'products',
+    path: '/products', 
+    component: () => import('@/views/Products.vue')
   },
   {
     name: 'not-found',

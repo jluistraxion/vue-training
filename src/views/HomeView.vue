@@ -1,13 +1,7 @@
 <template>
   <div
-    class="flex flex-col gap-4 items-center justify-center h-screen text-slate-500"
+    class="flex items-center justify-center h-[60vh] text-slate-500 text-lg mx-auto max-w-screen-2xl"
   >
-    <div class="text-lg">Vue Training</div>
-    <RouterLink
-      to="/challenge"
-      class="hover:text-blue-500 text-sm"
-    >
-      Planet Media Challenge
-    </RouterLink>
+    Vue Training
   </div>
 </template>
