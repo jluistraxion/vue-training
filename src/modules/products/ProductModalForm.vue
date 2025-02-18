@@ -35,27 +35,48 @@
         name="description"
       />
       <div class="col-span-3">
-        <Button type="submit"> Guardar </Button>
+        <Button
+          type="submit"
+          :isLoading="loading"
+        >
+          {{ $t('Save') }}
+        </Button>
       </div>
     </Form>
   </Modal>
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { computed, ref } from 'vue'
 import { Form } from 'vee-validate'
+import { useStore } from 'vuex'
+import { useToast } from 'vue-toastification'
+import { useI18n } from 'vue-i18n'
 import Input from '@/components/form/Input.vue'
 import Button from '@/components/buttons/Button.vue'
 import Modal from '@/components/modals/Modal.vue'
 import Textarea from '@/components/form/Textarea.vue'
 
-const initialValues = { title: '' }
+const store = useStore()
+const toast = useToast()
+const { t } = useI18n()
+
 const schema = { title: 'required' }
 
 const modal = ref()
 const form = ref()
 
-const handleSubmit = (values) => console.log('handleSubmit', values)
+const loading = computed(() => store.state.products.loading)
+
+const handleSubmit = async (payload) => {
+  const response = await store.dispatch('products/storeProduct', payload)
+  if (response.success) {
+    toast.success(t('Product created successfully'))
+  } else {
+    toast.error(response.message)
+  }
+  modal.value.hide()
+}
 const resetForm = () => form.value.resetForm()
 const show = () => modal.value.show()
 

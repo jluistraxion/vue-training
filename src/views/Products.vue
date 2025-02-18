@@ -13,9 +13,10 @@
     <EasyDataTable
       ref="dataTable"
       :headers
-      :items
+      :items="items || []"
       buttons-pagination
       table-class-name="easy-table"
+      :loading
     />
     <ProductModalForm ref="modalForm" />
   </div>
@@ -24,13 +25,18 @@
 <script setup>
 import { computed, ref } from 'vue'
 import { useI18n } from 'vue-i18n'
+import { useStore } from 'vuex'
 import Title from '@/components/content/Title.vue'
 import Button from '@/components/buttons/Button.vue'
 import ProductModalForm from '@/modules/products/ProductModalForm.vue'
 
 const { t } = useI18n()
+const store = useStore()
+store.dispatch('products/getProducts')
 
 const modalForm = ref()
+const items = computed(() => store.state.products.products)
+const loading = computed(() => store.state.products.loading)
 
 const headers = computed(() => [
   { text: 'Id', value: 'id', sortable: true },
@@ -38,10 +44,4 @@ const headers = computed(() => [
   { text: t('Category'), value: 'category', sortable: true },
   { text: t('Price'), value: 'price', sortable: true }
 ])
-
-const items = [
-  { id: 1, title: 'tets row 1', category: 'test category', price: 10.45 },
-  { id: 2, title: 'test row 2', category: 'test category', price: 5.25 },
-  { id: 3, title: 'test row 3', category: 'test category', price: 99.9 }
-]
 </script>
