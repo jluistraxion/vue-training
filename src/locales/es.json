@@ -5,5 +5,8 @@
   "New product": "Nuevo producto",
   "Title": "Título",
   "Category": "Categoría",
-  "Price": "Precio"
+  "Price": "Precio",
+  "There was an error, please try again": "Hubo un error, por favor intenta de nuevo",
+  "Product created successfully": "Producto creado exitosamente",
+  "Save": "Guardar"
 }

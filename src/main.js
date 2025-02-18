@@ -4,8 +4,9 @@ import '@/index.css'
 import router from '@/router'
 import Vue3EasyDataTable from 'vue3-easy-data-table'
 import i18nConfig from '@/config/i18n'
-import { createI18n } from 'vue-i18n'
 import Toast from 'vue-toastification'
+import { createI18n } from 'vue-i18n'
+import { VueQueryPlugin } from '@tanstack/vue-query'
 import 'vue3-easy-data-table/dist/style.css'
 import '@/config/veevalidate'
 import 'bootstrap-icons/font/bootstrap-icons.css'
@@ -18,5 +19,6 @@ const app = createApp(App)
 app.use(router)
 app.use(i18n)
 app.use(Toast)
+app.use(VueQueryPlugin)
 app.component('EasyDataTable', Vue3EasyDataTable)
 app.mount('#app')

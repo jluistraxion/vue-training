@@ -13,10 +13,15 @@
     <EasyDataTable
       ref="dataTable"
       :headers
-      :items
+      :items="items || []"
       buttons-pagination
       table-class-name="easy-table"
-    />
+      :loading="isFetching"
+    >
+      <template #item-price="{ price }">
+        <span>{{ formatMoney(price) }}</span>
+      </template>
+    </EasyDataTable>
     <ProductModalForm ref="modalForm" />
   </div>
 </template>
@@ -24,6 +29,8 @@
 <script setup>
 import { computed, ref } from 'vue'
 import { useI18n } from 'vue-i18n'
+import { useQuery } from '@tanstack/vue-query'
+import { formatMoney } from '@/utils/number'
 import Title from '@/components/content/Title.vue'
 import Button from '@/components/buttons/Button.vue'
 import ProductModalForm from '@/modules/products/ProductModalForm.vue'
@@ -39,9 +46,11 @@ const headers = computed(() => [
   { text: t('Price'), value: 'price', sortable: true }
 ])
 
-const items = [
-  { id: 1, title: 'tets row 1', category: 'test category', price: 10.45 },
-  { id: 2, title: 'test row 2', category: 'test category', price: 5.25 },
-  { id: 3, title: 'test row 3', category: 'test category', price: 99.9 }
-]
+const { data: items, isFetching } = useQuery({
+  queryKey: ['products'],
+  queryFn: async () => {
+    const response = await fetch('https://fakestoreapi.com/products')
+    return response.json()
+  }
+})
 </script>
