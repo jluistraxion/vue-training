@@ -3,18 +3,21 @@
     <Label :class="{ 'text-red-800': errorMessage }">
       {{ label }}
     </Label>
-    <input
-      ref="inputRef"
+    <textarea
       v-model="value"
       :name="name"
-      type="text"
-      autocomplete="off"
-      :disabled="disabled"
-      class="bg-gray-50 border text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2"
-      :class="[errorMessage ? 'border border-red-700' : 'border-0']"
       v-bind="$attrs"
+      :rows="rows"
+      :disabled="disabled"
+      class="bg-gray-50 text-gray-900 text-sm rounded-md block w-full p-2 focus:ring-blue-500 focus:border-blue-500"
+      :class="[errorMessage ? 'border border-red-700' : 'border-0']"
     />
-    <span class="text-red-800 text-xs">{{ errorMessage }}</span>
+    <span
+      v-show="errorMessage"
+      class="text-red-800 text-xs"
+    >
+      {{ errorMessage }}
+    </span>
   </div>
 </template>
 
@@ -35,6 +38,10 @@ const props = defineProps({
   loading: {
     type: Boolean,
     default: false
+  },
+  rows: {
+    type: Number,
+    default: 2
   }
 })
 
